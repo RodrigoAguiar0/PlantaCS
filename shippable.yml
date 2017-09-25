@@ -20,6 +20,5 @@ build:
     # http://docs.shippable.com/ci/advancedOptions/retry/
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
-    - shippable_retry mvn -X install
     - cp -r target shippable/codecoverage
    
