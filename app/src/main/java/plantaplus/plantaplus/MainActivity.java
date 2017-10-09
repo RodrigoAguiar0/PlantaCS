@@ -19,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         final Button bLogin = (Button) findViewById(R.id.bLogin);
 
-//        bLogin.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent loginIntent = new Intent(MainActivity.this, );
-//                MainActivity.this.startActivity(loginIntent);
-//            }
-//        });
+        bLogin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
+                MainActivity.this.startActivity(loginIntent);
+            }
+        });
     }
 }
