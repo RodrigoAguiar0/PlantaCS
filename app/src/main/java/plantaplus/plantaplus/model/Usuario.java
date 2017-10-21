@@ -18,6 +18,8 @@ public class Usuario {
         public String getUsername(){
             return this.username;
         }
+        return this.username;
+    }
     public void setUsername(String username){
         this.username = username;
     }
@@ -26,6 +28,8 @@ public class Usuario {
         public String getEmail(){
             return this.email;
         }
+        return this.email;
+    }
     public void setEmail(String email){
         this.email = email;
     }
@@ -34,6 +38,8 @@ public class Usuario {
         public String getSenha(){
             return this.senha;
         }
+        return this.senha;
+    }
     public void setSenha(String senha){
         this.username = senha;
     }
@@ -43,6 +49,10 @@ public class Usuario {
             return this.data;
         }
     public void setData(String data){
+    public Date getData(){
+        return this.data;
+    }
+    public void setData(Date data){
         this.data = data;
     }
 
@@ -51,6 +61,10 @@ public class Usuario {
             return this.id;
         }
     public void setId(String id){
+    public Integer getId(){
+        return this.id;
+    }
+    public void setId(Integer id){
         this.id = id;
     }
 
@@ -58,6 +72,8 @@ public class Usuario {
         public String getNome(){
             return this.nome;
         }
+        return this.nome;
+    }
     public void setNome(String nome){
         this.nome = nome;
     }
