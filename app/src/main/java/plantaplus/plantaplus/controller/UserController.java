@@ -3,9 +3,12 @@ package plantaplus.plantaplus.controller;
 /**
  * Created by ASUS on 20/10/2017.
  */
-public class UserControllerExample {
 
-    UserDAOExample userDao = new UserDAOExample();
+import plantaplus.plantaplus.model.Usuario;
+
+public class UserController {
+
+    UserDAO userDao = new UserDAO();
 
     //função chamada no clique do botão
     public boolean adicionar(Usuario usuario, int codContratante) {

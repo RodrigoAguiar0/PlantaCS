@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+
 
 public class GeraConexao {
 
@@ -23,12 +23,13 @@ public class GeraConexao {
             conn = DriverManager.getConnection(STR_CONEXAO + DATABASE, USUARIO, SENHA);
 
         } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Driver MySQL não foi encontrado " +
+            System.out.println("Driver MySQL não foi encontrado " +
                     e.getMessage());
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao conectar com a base de dados" +
+            System.out.println("Erro ao conectar com a base de dados" +
                     e.getMessage());
+
         }
         return conn;
 

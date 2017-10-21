@@ -1,5 +1,26 @@
-private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
-private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
+package plantaplus.plantaplus.controller;
+
+
+    /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import plantaplus.plantaplus.model.Usuario;
+
+
+public class UserDAO {
+
+    private final String INSERT = "INSERT INTO proposta (prop_nome, prop_depart, prop_descricao, prop_finalizada, contrat_cod) VALUES (?, ?, ?, ?, ?)";
+    private final String FINALIZA = "UPDATE proposta SET prop_finalizada=true WHERE prop_cod=?";
+    private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
+    private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
 
 public void adicionar(Usuario usuario, int codContratante) {
         if (usuario != null) {
@@ -43,11 +64,11 @@ public void excluir(Usuario usuario) {
             }
         }
 
-public ArrayList<Usuario> listarTodos() {
+public ArrayList<Usuario> listarTodos(){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        ArrayList<Usuario> usuario = new ArrayList<>();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
         try {
             conn = GeraConexao.getConexao();
             pstm = conn.prepareStatement(LIST);
@@ -60,13 +81,13 @@ public ArrayList<Usuario> listarTodos() {
         //proposta.setDescricao(rs.getString("prop_descricao"));
         //proposta.setFinalizada(rs.getBoolean("prop_finalizada"));
 
-                usuario.add(usuario);
+                usuarios.add(usuario);
                 }
             GeraConexao.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
             System.out.println("Erro ao listar os usuarios: " + e.getMessage());
             }
-        return usuario;
+        return usuarios;
         }
 
 public Usuario getUsuarioById(int id) {
@@ -91,5 +112,7 @@ public Usuario getUsuarioById(int id) {
         } catch (SQLException e) {
             System.out.println("Erro ao capturar o usuario" + e.getMessage());
         }
+
         return usuario;
         }
+}
