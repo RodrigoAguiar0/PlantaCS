@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class GeraConexao {
 
-    private static final String USUARIO = "plantaplusadmin";
+    private static final String USUARIO = "root";
     private static final String SENHA = "";
     private static final String DATABASE = "plantaplus";
-    private static final String DRIVER_CONEXAO = "org.mysql.Driver";
+    private static final String DRIVER_CONEXAO = "com.mysql.jdbc.Driver";
     private static final String STR_CONEXAO = "jdbc:mysql://localhost:3306/";
 
     public static Connection getConexao() {
@@ -23,12 +22,9 @@ public class GeraConexao {
             conn = DriverManager.getConnection(STR_CONEXAO + DATABASE, USUARIO, SENHA);
 
         } catch (ClassNotFoundException e) {
-            System.out.println("Driver MySQL não foi encontrado " +
-                    e.getMessage());
-
+            System.out.println("Driver MySQL não foi encontrado " + e.getMessage());
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar com a base de dados" +
-                    e.getMessage());
+            System.out.println("Erro ao conectar com a base de dados" + e.getMessage());
 
         }
         return conn;
