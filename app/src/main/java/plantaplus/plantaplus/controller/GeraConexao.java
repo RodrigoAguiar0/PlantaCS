@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 public class GeraConexao {
 
-    private static final String USUARIO = "plantaplusadmin";
+    private static final String USUARIO = "root";
     private static final String SENHA = "";
     private static final String DATABASE = "plantaplus";
-    private static final String DRIVER_CONEXAO = "org.mysql.Driver";
+    private static final String DRIVER_CONEXAO = "com.mysql.jdbc.Driver";
     private static final String STR_CONEXAO = "jdbc:mysql://localhost:3306/";
 
     public static Connection getConexao() {
