@@ -17,7 +17,8 @@ import plantaplus.plantaplus.model.Usuario;
 
 public class UserDAO {
 
-    private final String INSERT = "INSERT INTO proposta (prop_nome, prop_depart, prop_descricao, prop_finalizada, contrat_cod) VALUES (?, ?, ?, ?, ?)";
+    private final String INSERT_USUARIO = "INSERT INTO usuario (username, email, password, pessoa_id) VALUES (?, ?, ?, ?)";
+    private final String INSERT_PESSOA = "INSERT INTO pessoa (id) VALUES (?)";
     private final String FINALIZA = "UPDATE proposta SET prop_finalizada=true WHERE prop_cod=?";
     private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
     private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
@@ -27,7 +28,7 @@ public void adicionar(Usuario usuario, int codContratante) {
             Connection conn = null;
             try {
                 conn = GeraConexao.getConexao();
-                PreparedStatement pstm = conn.prepareStatement(INSERT);
+                PreparedStatement pstm = conn.prepareStatement(INSERT_USUARIO);
 
         //    pstm.setString(1, planta.getNome());
         //    pstm.setInt(5, codContratante);
