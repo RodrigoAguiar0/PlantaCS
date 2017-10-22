@@ -23,9 +23,9 @@ public class GeraConexao {
 
         } catch (ClassNotFoundException e) {
             System.out.println("Driver MySQL não foi encontrado " + e.getMessage());
-
         } catch (SQLException e) {
             System.out.println("Erro ao conectar com a base de dados" + e.getMessage());
+
         }
         return conn;
 

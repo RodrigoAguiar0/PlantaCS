@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.*;
+import android.widget.*;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final Button googleSignIn = (Button) findViewById(R.id.sign_in_button);
-
+        final Button bCadastro = (Button) findViewById(R.id.bCadastro);
+      
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View v){
                 Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
                 MainActivity.this.startActivity(loginIntent);
+            }
+        });
+
+        bCadastro.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, FormularioCadastroActivity.class);
+                startActivity(it);
             }
         });
 
@@ -101,4 +108,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
+
+    //public void realiza_cad(View view) {
+    //    Toast.makeText(getApplicationContext(), "teste!!!", Toast.LENGTH_LONG).show();
+    //}
 }
