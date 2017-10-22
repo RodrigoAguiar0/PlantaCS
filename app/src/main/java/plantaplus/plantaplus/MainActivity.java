@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
+import plantaplus.plantaplus.controller.UserDAO;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        final UserDAO userDAO = new UserDAO();
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
 
@@ -22,8 +26,15 @@ public class MainActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
-                MainActivity.this.startActivity(loginIntent);
+                final String username = etUsername.getText().toString();
+                final String password = etPassword.getText().toString();
+
+                if(userDAO.encontrar(username, password)){
+                    Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
+                    MainActivity.this.startActivity(loginIntent);
+                }else{
+                    System.out.println("Usuário e/ou senha incorretos");
+                }
             }
         });
 
