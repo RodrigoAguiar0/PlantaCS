@@ -11,7 +11,7 @@ public class UserController {
     UserDAO userDao = new UserDAO();
 
     //função chamada no clique do botão
-    public boolean adicionar(Usuario usuario, int codContratante) {
+    public boolean adicionar(Usuario usuario) {
 
         boolean cadastro = false;
 
