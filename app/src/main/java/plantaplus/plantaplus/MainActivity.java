@@ -6,15 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import plantaplus.plantaplus.controller.UserControllerExample;
 import plantaplus.plantaplus.model.Usuario;
 import plantaplus.plantaplus.controller.UserDAO;
 import plantaplus.plantaplus.controller.UserController;
@@ -52,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         bLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
-                MainActivity.this.startActivity(loginIntent);
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
@@ -103,10 +98,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             Usuario usuario = new Usuario();
-            UserControllerExample userControllerExample = new UserControllerExample();
             UserController userControllerExample = new UserController();
 
-            usuario.setName(acct.getDisplayName());
             usuario.setNome(acct.getDisplayName());
             usuario.setEmail(acct.getEmail());
             
@@ -123,8 +116,4 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
-
-    //public void realiza_cad(View view) {
-    //    Toast.makeText(getApplicationContext(), "teste!!!", Toast.LENGTH_LONG).show();
-    //}
 }
