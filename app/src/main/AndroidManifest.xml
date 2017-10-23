@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlantaSelectionActivity"></activity>
+        <activity android:name=".FormularioCadastroActivity"></activity>
     </application>
 
 </manifest>
