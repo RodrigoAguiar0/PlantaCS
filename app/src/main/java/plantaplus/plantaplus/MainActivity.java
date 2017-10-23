@@ -16,6 +16,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import plantaplus.plantaplus.controller.UserControllerExample;
 import plantaplus.plantaplus.model.Usuario;
+import plantaplus.plantaplus.controller.UserDAO;
+import plantaplus.plantaplus.controller.UserController;
+
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final UserDAO userDAO = new UserDAO();
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
 
@@ -50,6 +54,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View v){
                 Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
                 MainActivity.this.startActivity(loginIntent);
+                final String username = etUsername.getText().toString();
+                final String password = etPassword.getText().toString();
+
+                if(userDAO.encontrar(username, password)){
+                    Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
+                    MainActivity.this.startActivity(loginIntent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Usuário e/ou senha incorretos", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -91,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             GoogleSignInAccount acct = result.getSignInAccount();
             Usuario usuario = new Usuario();
             UserControllerExample userControllerExample = new UserControllerExample();
+            UserController userControllerExample = new UserController();
 
             usuario.setName(acct.getDisplayName());
+            usuario.setNome(acct.getDisplayName());
             usuario.setEmail(acct.getEmail());
             
             userControllerExample.adicionar(usuario);

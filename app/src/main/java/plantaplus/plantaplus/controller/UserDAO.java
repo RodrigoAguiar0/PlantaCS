@@ -1,12 +1,5 @@
 package plantaplus.plantaplus.controller;
 
-
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,15 +8,16 @@ import java.util.ArrayList;
 import plantaplus.plantaplus.model.Usuario;
 
 
-public class UserDAO {
+    public class UserDAO {
 
     private final String INSERT_USUARIO = "INSERT INTO usuario (username, email, password, pessoa_id) VALUES (?, ?, ?, ?)";
     private final String INSERT_PESSOA = "INSERT INTO pessoa (id) VALUES (?)";
     private final String FINALIZA = "UPDATE proposta SET prop_finalizada=true WHERE prop_cod=?";
     private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
     private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
+    private final String FIND = "SELECT *FROM usuario WHERE username=?";
 
-public void adicionar(Usuario usuario, int codContratante) {
+    public void adicionar(Usuario usuario, int codContratante) {
         if (usuario != null) {
             Connection conn = null;
             try {
@@ -45,7 +39,22 @@ public void adicionar(Usuario usuario, int codContratante) {
 
         }
 
-public void excluir(Usuario usuario) {
+    public boolean encontrar(String username, String senha){
+        Connection conn = null;
+        try {
+            conn = GeraConexao.getConexao();
+            PreparedStatement pstm = conn.prepareStatement(FIND);
+            pstm.setString(1, username);
+            pstm.setString(2, senha);
+            pstm.execute();
+            GeraConexao.fechaConexao(conn, pstm);
+            return true;
+        }catch (SQLException e){
+            return false;
+        }
+    }
+
+    public void excluir(Usuario usuario) {
         if (usuario != null) {
             Connection conn = null;
             try {
@@ -62,10 +71,10 @@ public void excluir(Usuario usuario) {
                 }
         } else {
             System.out.println("Usuario enviado como parâmetro está vazio");
-            }
         }
+    }
 
-public ArrayList<Usuario> listarTodos(){
+    public ArrayList<Usuario> listarTodos(){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -89,9 +98,9 @@ public ArrayList<Usuario> listarTodos(){
             System.out.println("Erro ao listar os usuarios: " + e.getMessage());
             }
         return usuarios;
-        }
+    }
 
-public Usuario getUsuarioById(int id) {
+    public Usuario getUsuarioById(int id) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -116,4 +125,4 @@ public Usuario getUsuarioById(int id) {
 
         return usuario;
         }
-}
+    }
