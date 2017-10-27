@@ -14,7 +14,7 @@ import plantaplus.plantaplus.model.Usuario;
     private final String FINALIZA = "UPDATE proposta SET prop_finalizada=true WHERE prop_cod=?";
     private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
     private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
-    private final String FIND = "SELECT *FROM usuario WHERE username=?";
+    private final String FIND = "SELECT *FROM usuario WHERE username=? AND password=?";
 
     public void adicionar(Usuario usuario, int codContratante) {
         if (usuario != null) {

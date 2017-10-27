@@ -1,10 +1,11 @@
 package plantaplus.plantaplus;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import plantaplus.plantaplus.controller.UserDAO;
 
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -29,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
+                System.out.println("Alooou");
                 if(userDAO.encontrar(username, password)){
                     Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
-                    MainActivity.this.startActivity(loginIntent);
+                    startActivity(loginIntent);
                 }else{
                     System.out.println("Usuário e/ou senha incorretos");
                 }
