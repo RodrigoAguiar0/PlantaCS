@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -52,9 +53,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
+                System.out.println("Alooou");
                 if(userDAO.encontrar(username, password)){
                     Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
-                    MainActivity.this.startActivity(loginIntent);
+                    startActivity(loginIntent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Usuário e/ou senha incorretos", Toast.LENGTH_LONG).show();
                 }

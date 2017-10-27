@@ -8,27 +8,32 @@ import java.sql.SQLException;
 
 public class GeraConexao {
 
-    private static final String USUARIO = "root";
+    private static final String USUARIO = "";
     private static final String SENHA = "";
     private static final String DATABASE = "plantaplus";
     private static final String DRIVER_CONEXAO = "com.mysql.jdbc.Driver";
-    private static final String STR_CONEXAO = "jdbc:mysql://localhost:3306/";
+    private static final String STR_CONEXAO = "jdbc:mysql://192.168.25.4:3306/";
+
+    private static Connection conn;
 
     public static Connection getConexao() {
-        Connection conn = null;
+//
+
+        conn = null;
         try {
-
             Class.forName(DRIVER_CONEXAO);
-            conn = DriverManager.getConnection(STR_CONEXAO + DATABASE, USUARIO, SENHA);
+            setConexao(DriverManager.getConnection(STR_CONEXAO + DATABASE, USUARIO, SENHA));
 
+            System.out.println("DEU CERTO");
         } catch (ClassNotFoundException e) {
             System.out.println("Driver MySQL não foi encontrado " + e.getMessage());
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar com a base de dados" + e.getMessage());
-
+            System.out.println("Erro ao conectar com a base de dados " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("DEU PAU " + e.getMessage());
         }
-        return conn;
 
+        return conn;
     }
 
     public static void fechaConexao(Connection conn) {
@@ -74,5 +79,9 @@ public class GeraConexao {
         } catch (Exception e) {
             System.out.println("Não foi possível fechar o ResultSet " + e.getMessage());
         }
+    }
+
+    public static void setConexao(Connection connection){
+        conn = connection;
     }
 }
