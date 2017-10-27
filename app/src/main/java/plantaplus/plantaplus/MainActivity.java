@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         final UserDAO userDAO = new UserDAO();
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
                     startActivity(loginIntent);
                 }else{
-                    System.out.println("Usuário e/ou senha incorretos");
+                    Toast.makeText(getApplicationContext(), "Usuário e/ou senha incorretos", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -48,8 +47,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    //public void realiza_cad(View view) {
-    //    Toast.makeText(getApplicationContext(), "teste!!!", Toast.LENGTH_LONG).show();
-    //}
 }
