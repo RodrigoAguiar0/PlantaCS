@@ -1,4 +1,4 @@
-package plantaplus.plantaplus.controller;
+package plantaplus.plantaplus.controller.examples;
 
 
     /*
@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import plantaplus.plantaplus.controller.GeraConexao;
 import plantaplus.plantaplus.model.Planta;   //   ****** importação da classe de implementação do objeto a ser cadastrado
 
 public class DAOExample {
