@@ -12,7 +12,6 @@ package plantaplus.plantaplus.controller;
 
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import plantaplus.plantaplus.model.Usuario;
-
 
     public class UserDAO implements AsyncResponse{
 
@@ -50,7 +48,7 @@ import plantaplus.plantaplus.model.Usuario;
             Connection conn = null;
             try {
                 conn = GeraConexao.getConexao();
-                PreparedStatement pstm = conn.prepareStatement(INSERT);
+                PreparedStatement pstm = conn.prepareStatement(INSERT_USUARIO);
 
         //    pstm.setString(1, planta.getNome());
         //    pstm.setInt(5, codContratante);
@@ -76,21 +74,13 @@ import plantaplus.plantaplus.model.Usuario;
      * @return boolean - Resultado da busca (verdadeiro se confirmada a existência do usuário e
      * falso caso contrário)
      * */
-    public boolean existeUsuario(String username, String senha){
-        HashMap postData = new HashMap();
-
-        PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
-        task.execute("http://192.168.25.4/client/login.php");
-
-
+    public boolean encontrar(String username, String senha){
         Connection conn = null;
         try {
-            conn = GeraConexao.getConexao();
-            PreparedStatement pstm = conn.prepareStatement(FIND);
-            pstm.setString(1, username);
-            pstm.setString(2, senha);
-            pstm.execute();
-            GeraConexao.fechaConexao(conn, pstm);
+            HashMap postData = new HashMap();
+
+            PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
+            task.execute("http://192.168.25.4/client/login.php");
             return true;
         }catch (SQLException e){
             return false;
@@ -103,7 +93,7 @@ import plantaplus.plantaplus.model.Usuario;
      * @param usuario - Instância usuário que se deseja excluir do banco de dados.
      *
      * */
-     public void excluir(Usuario usuario) {
+    public void excluir(Usuario usuario) {
         if (usuario != null) {
             Connection conn = null;
             try {
@@ -185,7 +175,7 @@ import plantaplus.plantaplus.model.Usuario;
 
         return usuario;
         }
-
+      
         @Override
         public void processFinish(String s) {
 

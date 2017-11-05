@@ -1,6 +1,5 @@
-package plantaplus.plantaplus.controller;
+package plantaplus.plantaplus.controller.examples;
 
-import plantaplus.plantaplus.controller.DAOExample;
 import plantaplus.plantaplus.model.Planta;
 
 public class ControllerExample {

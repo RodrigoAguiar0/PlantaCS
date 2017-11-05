@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".PlantaSelectionActivity"></activity>
         <activity android:name=".FormularioCadastroActivity"></activity>
-    </application>
 
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
