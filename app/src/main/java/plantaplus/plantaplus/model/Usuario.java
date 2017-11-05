@@ -31,7 +31,6 @@ public class Usuario {
     public String getSenha(){
         return this.senha;
     }
-
     public void setSenha(String senha) {
         this.username = senha;
     }
@@ -46,7 +45,6 @@ public class Usuario {
     public Integer getId(){
         return this.id;
     }
-
     public void setId(Integer id){
         this.id = id;
     }
