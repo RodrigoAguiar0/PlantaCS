@@ -31,6 +31,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile files('mysql-connector-java-3.1.14-bin.jar')
+    compile files('GenAsync.jar')
     compile 'com.google.android.gms:play-services-auth:9.8.0'
 }
 
