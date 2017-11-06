@@ -15,13 +15,13 @@ public class UserController {
 
         boolean cadastro = false;
 
-        /*if (planta != null && planta.getNome().length() > 0
-                && planta.getContratante() != null
-                && !planta.getCursos().isEmpty()
-                && planta.getDescricao().length() > 0) {
+        if (usuario != null && usuario.getEmail().length() > 0
+                && usuario.getNome().length() > 0
+                && usuario.getSenha().length() > 0
+                && usuario.getUsername().length() > 0) {
             cadastro = true;
-            dao.adicionar(planta, codContratante);
-        }*/
+            userDao.adicionarUsuario(usuario);
+        }
         return cadastro;
     }
 }

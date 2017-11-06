@@ -15,10 +15,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import plantaplus.plantaplus.model.Usuario;
 import plantaplus.plantaplus.controller.UserDAO;
 import plantaplus.plantaplus.controller.UserController;
+import java.util.HashMap;
+import com.kosalgeek.asynctask.AsyncResponse;
+import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, AsyncResponse, View.OnClickListener{
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
-
+    EditText etUsername;
+    EditText etPassword;
+  
     private final int RC_SIGN_IN = 9001;
     private final String TAG = "MainActivity";
 
@@ -26,13 +31,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final UserDAO userDAO = new UserDAO();
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-
+  
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+  
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final Button googleSignIn = (Button) findViewById(R.id.sign_in_button);
         final Button bCadastro = (Button) findViewById(R.id.bCadastro);
@@ -47,18 +54,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
 
         bLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                final String username = etUsername.getText().toString();
-                final String password = etPassword.getText().toString();
+    @Override
+    public void onClick(View v) {
+        HashMap postData = new HashMap();
+        postData.put("txtUsername", etUsername.getText().toString());
+        postData.put("txtPassword", etPassword.getText().toString() );
 
-                if(userDAO.encontrar(username, password)){
-                    Intent loginIntent = new Intent(MainActivity.this, PlantaSelectionActivity.class);
-                    MainActivity.this.startActivity(loginIntent);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Usuário e/ou senha incorretos", Toast.LENGTH_LONG).show();
-                }
-            }
+        PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
+        task.execute("http://192.168.25.4/client/login.php");
+         }
         });
 
         bCadastro.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +80,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
     }
 
+    @Override
+    public void processFinish(String output) {
+        Toast.makeText(this, output, Toast.LENGTH_LONG).show();
+
+        if (output == "success") {
+            Intent it = new Intent(MainActivity.this, PlantaSelectionActivity.class);
+            startActivity(it);
+        }
+    }
+  
     public void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);

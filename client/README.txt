@@ -1,0 +1,1 @@
+O diretório client deve ser colocado no diretório local C:/xampp/htdocs/ ou seja onde o diretório xampp/htdocs esteja no computador de quem testar funções que conectem com o banco de dados.
