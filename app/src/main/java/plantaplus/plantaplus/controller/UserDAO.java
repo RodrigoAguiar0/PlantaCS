@@ -48,7 +48,7 @@ import plantaplus.plantaplus.model.Usuario;
             Connection conn = null;
             try {
                 conn = GeraConexao.getConexao();
-                PreparedStatement pstm = conn.prepareStatement(INSERT_USUARIO);
+                PreparedStatement pstm = conn.prepareStatement(INSERT);
 
         //    pstm.setString(1, planta.getNome());
         //    pstm.setInt(5, codContratante);
@@ -79,10 +79,10 @@ import plantaplus.plantaplus.model.Usuario;
         try {
             HashMap postData = new HashMap();
 
-            PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
+            PostResponseAsyncTask task = new PostResponseAsyncTask(UserDAO.this, postData);
             task.execute("http://192.168.25.4/client/login.php");
             return true;
-        }catch (SQLException e){
+        }catch (Exception e){
             return false;
         }
     }

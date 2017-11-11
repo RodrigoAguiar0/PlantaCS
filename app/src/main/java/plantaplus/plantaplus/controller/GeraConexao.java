@@ -12,7 +12,7 @@ public class GeraConexao {
     private static final String SENHA = "";
     private static final String DATABASE = "plantaplus";
     private static final String DRIVER_CONEXAO = "com.mysql.jdbc.Driver";
-    private static final String STR_CONEXAO = "jdbc:mysql://192.168.25.4:3306/";
+    private static final String STR_CONEXAO = "jdbc:mysql://172.16.105.142:3306/";
 
     private static Connection conn;
 
