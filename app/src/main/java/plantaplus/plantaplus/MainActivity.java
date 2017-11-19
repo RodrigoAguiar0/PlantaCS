@@ -4,22 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import plantaplus.plantaplus.model.Usuario;
-import plantaplus.plantaplus.controller.UserDAO;
-import plantaplus.plantaplus.controller.UserController;
-import java.util.HashMap;
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, AsyncResponse, View.OnClickListener{
+import java.util.HashMap;
+
+import plantaplus.plantaplus.controller.UserController;
+import plantaplus.plantaplus.controller.UserDAO;
+import plantaplus.plantaplus.model.Usuario;
+
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, AsyncResponse{
 
     EditText etUsername;
     EditText etPassword;
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         etPassword = (EditText) findViewById(R.id.etPassword);
   
         final Button bLogin = (Button) findViewById(R.id.bLogin);
-        final Button googleSignIn = (Button) findViewById(R.id.sign_in_button);
+        final SignInButton googleSignIn = (SignInButton) findViewById(R.id.sign_in_button);
         final Button bCadastro = (Button) findViewById(R.id.bCadastro);
       
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,15 +60,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
 
         bLogin.setOnClickListener(new View.OnClickListener(){
-    @Override
-    public void onClick(View v) {
-        HashMap postData = new HashMap();
-        postData.put("txtUsername", etUsername.getText().toString());
-        postData.put("txtPassword", etPassword.getText().toString() );
+            @Override
+            public void onClick(View v) {
+                HashMap postData = new HashMap();
+                postData.put("txtUsername", etUsername.getText().toString());
+                postData.put("txtPassword", etPassword.getText().toString());
 
-        PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
-        task.execute("http://192.168.25.4/client/login.php");
-         }
+                PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData, MainActivity.this);
+                task.execute("http://192.168.15.4/client/login.php");
+            }
         });
 
         bCadastro.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void processFinish(String output) {
         Toast.makeText(this, output, Toast.LENGTH_LONG).show();
 
-        if (output == "success") {
-            Intent it = new Intent(MainActivity.this, PlantaSelectionActivity.class);
+        if (output.equals("success")) {
+            Intent it = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(it);
         }
     }
@@ -112,12 +118,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             Usuario usuario = new Usuario();
-            UserController userControllerExample = new UserController();
+            UserDAO userDAO = new UserDAO();
+            UserController userController = new UserController();
 
             usuario.setNome(acct.getDisplayName());
             usuario.setEmail(acct.getEmail());
-            
-            userControllerExample.adicionar(usuario);
+
+            if (!userDAO.usuarioExiste(usuario)) {
+                userController.adicionarGoogle(usuario);
+            } else {
+                Intent it = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(it);
+            }
+
         }/* else {
             // Signed out, show unauthenticated UI.
 

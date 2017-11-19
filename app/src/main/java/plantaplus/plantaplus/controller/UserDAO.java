@@ -12,16 +12,13 @@ package plantaplus.plantaplus.controller;
 
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import plantaplus.plantaplus.model.Usuario;
 
-    public class UserDAO implements AsyncResponse{
+public class UserDAO implements AsyncResponse{
 
     /**
      * Esta classe possui funções para lidar com cadastros de usuários no banco de dados, com as
@@ -45,44 +42,32 @@ import plantaplus.plantaplus.model.Usuario;
      * */
     public void adicionarUsuario(Usuario usuario) {
         if (usuario != null) {
-            Connection conn = null;
-            try {
-                conn = GeraConexao.getConexao();
-                PreparedStatement pstm = conn.prepareStatement(INSERT_USUARIO);
 
-        //    pstm.setString(1, planta.getNome());
-        //    pstm.setInt(5, codContratante);
-
-                pstm.execute();
-                System.out.println("Usuario cadastrado com sucesso");
-                GeraConexao.fechaConexao(conn, pstm);
-                } catch (SQLException e) {
-                    System.out.println("Erro ao cadastrar o usuario" + e.getMessage());
-                    }
         } else {
             System.out.println("Planta enviada como parâmetro está vazia");
-            }
-
         }
+
+    }
 
     /**
      * Verifica a existência de um determinado usuário no banco de dados, baseado em username e
      * senha
      *
-     * @param username - Nome de usuário usado pelo usuário para acessar a aplicação
-     * @param senha - Senha usada pelo usuário para acessar a aplicação
+     * @param usuario - Usuário usado que deseja acessar a aplicação
      * @return boolean - Resultado da busca (verdadeiro se confirmada a existência do usuário e
      * falso caso contrário)
      * */
-    public boolean encontrar(String username, String senha){
-        Connection conn = null;
+    public boolean usuarioExiste(Usuario usuario){
         try {
             HashMap postData = new HashMap();
+            postData.put("txtUsername", usuario.getEmail());
+            postData.put("txtPassword", usuario.getSenha());
 
-            PostResponseAsyncTask task = new PostResponseAsyncTask(this, postData);
+            PostResponseAsyncTask task = new PostResponseAsyncTask(UserDAO.this, postData);
             task.execute("http://192.168.25.4/client/login.php");
             return true;
-        }catch (SQLException e){
+        } catch (Exception e) {
+            System.out.println("ALOOOOOOOOOU");
             return false;
         }
     }
@@ -95,19 +80,11 @@ import plantaplus.plantaplus.model.Usuario;
      * */
     public void excluir(Usuario usuario) {
         if (usuario != null) {
-            Connection conn = null;
             try {
-                conn = GeraConexao.getConexao();
-                PreparedStatement pstm = conn.prepareStatement(FINALIZA);
 
-        //pstm.setInt(1, planta.getCodigo());
-
-                pstm.execute();
-                System.out.println("Usuario excluído com sucesso");
-                GeraConexao.fechaConexao(conn, pstm);
-                } catch (SQLException e) {
-                    System.out.println("Erro ao excluir o usuario" + e.getMessage());
-                }
+            } catch (Exception e) {
+                System.out.println("Erro ao excluir o usuario" + e.getMessage());
+            }
         } else {
             System.out.println("Usuario enviado como parâmetro está vazio");
         }
@@ -119,26 +96,15 @@ import plantaplus.plantaplus.model.Usuario;
      * @return Arraylist<Usuario> - Lista com todos os usuários contidos no banco de dados.
      */
     public ArrayList<Usuario> listarTodos(){
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
+
         ArrayList<Usuario> usuarios = new ArrayList<>();
         try {
-            conn = GeraConexao.getConexao();
-            pstm = conn.prepareStatement(LIST);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
+
+            while (true) {
                 Usuario usuario = new Usuario();
-
-        //proposta.setNome(rs.getString("prop_nome"));
-        //proposta.setDepartamentos(rs.getString("prop_depart"));
-        //proposta.setDescricao(rs.getString("prop_descricao"));
-        //proposta.setFinalizada(rs.getBoolean("prop_finalizada"));
-
                 usuarios.add(usuario);
             }
-            GeraConexao.fechaConexao(conn, pstm, rs);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Erro ao listar os usuarios: " + e.getMessage());
         }
         return usuarios;
@@ -151,33 +117,25 @@ import plantaplus.plantaplus.model.Usuario;
      * @return Usuario - Usuário procurado e encontrado
      * */
     public Usuario getUsuarioById(int id) {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
         Usuario usuario = new Usuario();
         try {
-            conn = GeraConexao.getConexao();
-            pstm = conn.prepareStatement(LISTBYID);
-            pstm.setInt(1, id);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
+            while (true) {
 
-        //planta.setNome(rs.getString("prop_nome"));
-        //planta.setDepartamentos(rs.getString("prop_depart"));
-        //planta.setDescricao(rs.getString("prop_descricao"));
-        //planta.setFinalizada(rs.getBoolean("prop_finalizada"));
-
-        }
-        GeraConexao.fechaConexao(conn, pstm, rs);
-        } catch (SQLException e) {
+            }
+        } catch (Exception e) {
             System.out.println("Erro ao capturar o usuario" + e.getMessage());
         }
 
         return usuario;
-        }
-      
-        @Override
-        public void processFinish(String s) {
-
-        }
     }
+
+    /**
+     * Saída das funções de comunicação ao banco de dados
+     *
+     * @param result - Resultado retornado pela função PHP de comunicação com a aplicação
+     */
+    @Override
+    public void processFinish(String result) {
+
+    }
+}

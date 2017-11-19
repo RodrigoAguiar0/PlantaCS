@@ -49,6 +49,7 @@
         android:ems="10"
         android:fontFamily="sans-serif-medium"
         android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etUsername"/>

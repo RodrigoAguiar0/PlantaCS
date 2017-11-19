@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="plantaplus.plantaplus.MainActivity">
+    tools:context="plantaplus.plantaplus.HomeActivity">
 
     <ImageView
         android:id="@+id/Background"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bPlantasPessoais"
         android:layout_width="166dp"
         android:layout_height="79dp"
         android:text="Ver plantas pessoais"
@@ -30,12 +30,12 @@
         app:layout_constraintVertical_bias="0.333" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/bBancoPlantas"
         android:layout_width="165dp"
         android:layout_height="79dp"
         android:text="Ver banco de plantas"
         android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/button4"
+        app:layout_constraintTop_toBottomOf="@id/bPlantasPessoais"
         app:layout_constraintRight_toRightOf="@id/Background"
         app:layout_constraintLeft_toLeftOf="@id/Background" />
 
