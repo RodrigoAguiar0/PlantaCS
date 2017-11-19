@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View v) {
                 HashMap postData = new HashMap();
                 postData.put("txtUsername", etUsername.getText().toString());
-                postData.put("txtPassword", etPassword.getText().toString() );
+                postData.put("txtPassword", etPassword.getText().toString());
 
                 PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData, MainActivity.this);
-                task.execute("http://172.16.105.142/client/login.php");
+                task.execute("http://192.168.15.4/client/login.php");
             }
         });
 
@@ -118,12 +118,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             Usuario usuario = new Usuario();
-            UserController userControllerExample = new UserController();
+            UserDAO userDAO = new UserDAO();
+            UserController userController = new UserController();
 
             usuario.setNome(acct.getDisplayName());
             usuario.setEmail(acct.getEmail());
-            
-            userControllerExample.adicionar(usuario);
+
+            if (!userDAO.usuarioExiste(usuario)) {
+                userController.adicionarGoogle(usuario);
+            } else {
+                Intent it = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(it);
+            }
+
         }/* else {
             // Signed out, show unauthenticated UI.
 
