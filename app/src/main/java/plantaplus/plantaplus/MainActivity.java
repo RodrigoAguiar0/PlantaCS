@@ -239,6 +239,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData,
                     MainActivity.this);
-            task.execute("http://192.168.15.4/client/login.php");
+            task.execute("http://192.168.6.48/client/login.php");
     }
 }
