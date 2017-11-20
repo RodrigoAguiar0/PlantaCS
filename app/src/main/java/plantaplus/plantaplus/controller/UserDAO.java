@@ -28,13 +28,6 @@ public class UserDAO implements AsyncResponse{
      * @since 18/10/2017
      * */
 
-    private final String INSERT = "INSERT INTO proposta (prop_nome, prop_depart, prop_descricao, " +
-            "prop_finalizada, contrat_cod) VALUES (?, ?, ?, ?, ?)";
-    private final String FINALIZA = "UPDATE proposta SET prop_finalizada=true WHERE prop_cod=?";
-    private final String LIST = "SELECT *FROM proposta WHERE contra_cod=?";
-    private final String LISTBYID = "SELECT *FROM proposta WHERE prop_cod=?";
-    private final String FIND = "SELECT *FROM usuario WHERE username=? AND password=?";
-
     /**
      * Adiciona um usuário no banco de dados
      *
