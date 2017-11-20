@@ -11,7 +11,7 @@ public class UserController {
     UserDAO userDao = new UserDAO();
 
     //função chamada no clique do botão
-    public boolean adicionar(Usuario usuario) {
+    public boolean adicionarUsuario(Usuario usuario) {
 
         boolean cadastro = false;
 
@@ -20,8 +20,20 @@ public class UserController {
                 && usuario.getSenha().length() > 0
                 && usuario.getUsername().length() > 0) {
             cadastro = true;
-            userDao.adicionarUsuario(usuario);
         }
+        return cadastro;
+    }
+
+    public boolean acessoValidoUsuario (Usuario usuario) {
+
+        boolean cadastro = false;
+
+        if (usuario != null &&
+                usuario.getUsername().length() != 0 &&
+                usuario.getSenha().length() != 0) {
+            cadastro = true;
+        }
+
         return cadastro;
     }
 }

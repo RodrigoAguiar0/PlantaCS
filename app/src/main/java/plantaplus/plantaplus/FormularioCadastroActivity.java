@@ -1,10 +1,7 @@
 package plantaplus.plantaplus;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import plantaplus.plantaplus.controller.UserController;
@@ -33,6 +30,6 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         usuario.setSenha(senha.getText().toString());
         usuario.setEmail(email.getText().toString());
 
-        userControler.adicionar(usuario);
+        userControler.adicionarUsuario(usuario);
     }
 }
