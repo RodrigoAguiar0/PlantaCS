@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
      * a passagem das requisições pelas classes Controller.
      *
      * @author Rodrigo Oliveira Gaíva Aguiar
-     * @since
+     * @since 08/10/2017
      * */
 
     EditText etUsername;

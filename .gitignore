@@ -1,9 +1,11 @@
 /local.properties
 /captures
 .externalNativeBuild
+.idea
 
 # Built application files
 /*/build/
+build/
 
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
