@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">PlantaPlus</string>
+    <string name="rosa">Uma das flores mais populares do mundo. Seus primeiros registros datam por
+        volta de 3000 antes de Cristo. Necessita ser regada apenas uma vez ao dia e suas podas
+        são anuais.</string>
+    <string name="girassol">Necessita de ambientes bem iluminados e com grande exposição solar.
+        Deve ser transposto de vaso conforme seu crescimento avança, garantindo sempre o espaço
+        adequado para as raízes. Não necessita de muita umidade, portanto, deve-se evitar
+        a chuva.</string>
+    <string name="suculentas">Plantas suculentas são pouco exigentes em termos de água e solo.
+        Devem ser molhadas uma ou duas vezes por semana e seu solo deve ser, preferencialmente,
+        arenoso e com alto índice de drenagem.</string>
+    <string name="citrica">São plantas de grande porte ideais para quintais e jardins. Se adaptam
+        bem à climas quente e exigem adubação fértil e água sempre que seu solo estiver seco. Suas
+        podes devem ser feitas de tal modo que permita a circulação do ar e a penetração do solo
+        por toda a planta. As doenças mais recorrentes são oriundas de fungos e parasitas.</string>
+    <string name="trepadeiras">Trepadeiras necessitam de solo bastante fértil, descompactado e com
+        alta drenagem. Devem ser planeadas no sentido do vento, para que com as rajadas suas
+        raízes se fixem mais firmemente à parede ou superfície</string>
+    <string name="orguidea">Orquídeas são plantas exóticas e, por isso, necessitam de cuidados
+        redobrados. Devem ser molhadas apenas quando seu solo estiver completamente seco. Sua
+        poda deve ser feita com tesouras esterilizadas e manchas nas pétalas podem ser removidas
+        com chá à base de fumo-de-corda</string>
 </resources>

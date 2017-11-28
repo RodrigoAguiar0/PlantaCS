@@ -1,33 +1,27 @@
 {
   "project_info": {
-    "project_number": "961265800201",
-    "project_id": "firebase-plantaplus"
+    "project_number": "185647053681",
+    "firebase_url": "https://planta-plus.firebaseio.com",
+    "project_id": "planta-plus",
+    "storage_bucket": "planta-plus.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:961265800201:android:ecd12165302b27bf",
+        "mobilesdk_app_id": "1:185647053681:android:2d5219c243f21276",
         "android_client_info": {
           "package_name": "plantaplus.plantaplus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "961265800201-o07op1o1lcvt6s60avmiegnaaihuqmi8.apps.googleusercontent.com",
+          "client_id": "185647053681-s5ilgk180q7b97gsebe55p5hatv3npis.apps.googleusercontent.com",
           "client_type": 3
-        },
-        {
-          "client_id": "961265800201-kdfsmif9rc5nd69tm9ehmntctbisbr6u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.ufg.inf.es.plantaplus",
-            "certificate_hash": "1673408b2c50f4cf53d534ee88ab0b77be733770"
-          }
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANk_0pjD0zPd49DtdEQ1Qv8owjRtQ0JIE"
+          "current_key": "AIzaSyCWdxYU2VHwAT2XXFfkeA3vzlc8_yWX85k"
         }
       ],
       "services": {
@@ -39,7 +33,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
