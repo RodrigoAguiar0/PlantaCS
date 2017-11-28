@@ -28,7 +28,7 @@ public class Usuario {
         return this.senha;
     }
     public void setSenha(String senha) {
-        this.username = senha;
+        this.senha = senha;
     }
 
     public Date getData(){

@@ -12,6 +12,8 @@ import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity{
 
+    final String user = getIntent().getStringExtra("user");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class HomeActivity extends AppCompatActivity{
         bPlantasPessoais.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent it = new Intent(HomeActivity.this, PessoaisActivity.class);
+                it.putExtra("user", user);
                 startActivity(it);
             }
         });

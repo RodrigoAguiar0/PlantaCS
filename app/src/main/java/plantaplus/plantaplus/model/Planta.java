@@ -19,6 +19,11 @@ public class Planta {
         // default
     }
 
+    public Planta(String nomePopular, String nomeCientifico) {
+        this.nomePopular = nomePopular;
+        this.nomeCientifico = nomeCientifico;
+    }
+
     public Planta(String nomePopular, String nomeCientifico, boolean espinhosa, boolean suculenta,
                   boolean trepadeira, boolean comestivel, boolean ornamental, boolean processada,
                   boolean floral, int rega, float exposicaoSolar, String adubagem) {
