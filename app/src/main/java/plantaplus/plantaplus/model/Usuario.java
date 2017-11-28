@@ -80,7 +80,7 @@ public class Usuario {
      * @param senha
      */
     public void setSenha(String senha) {
-        this.username = senha;
+        this.senha = senha;
     }
 
     /**

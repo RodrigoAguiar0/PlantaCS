@@ -44,6 +44,11 @@ public class Planta {
     public Planta(String nomePopular) {
     }
 
+    public Planta(String nomePopular, String nomeCientifico) {
+        this.nomePopular = nomePopular;
+        this.nomeCientifico = nomeCientifico;
+    }
+
     /**
      * Construtor de uma planta com o intuito de selecionar qual é o tipo da planta e qual será o
      * tratamento dado a ela durante os cuidados;

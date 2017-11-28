@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
-  
+
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final SignInButton googleSignIn = (SignInButton) findViewById(R.id.sign_in_button);
         final Button bCadastro = (Button) findViewById(R.id.bCadastro);
@@ -123,8 +123,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         if (output.equals("success - login")) {
             Intent it = new Intent(MainActivity.this, HomeActivity.class);
+            it.putExtra("user", etUsername.getText().toString());
             startActivity(it);
         } else if (output.contains("fail - Google login")) {
+            System.out.println("FALHOU O LOGIN AQUI");
             cadastroGoogle(output.substring(22));
         }
     }
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     /**
-     * Recebe o resultado retornado da tentativa de sign in (acesso) com conta Google à aplicação.
+     * Recebe o resultado retornado da tentativa de sign in (acesso) à aplicação com conta Google.
      *
      * @param requestCode
      * @param resultCode
@@ -169,8 +171,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
 
-            loginGoogle(acct.getEmail());
+            usuario.setEmail(acct.getEmail());
+            usuario.setNome(acct.getDisplayName());
 
+            loginGoogle(acct.getEmail());
         }/* else {
             // Signed out, show unauthenticated UI.
 
@@ -190,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     /**
-     * Realiza o login com conta Google à aplicação.
+     * Realiza o login à aplicação com conta Google.
      *
      * @param email: Informações do usuário que deseja fazer login na aplicação
      */
@@ -210,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     /**
-     * Realiza o cadastro com conta Google à aplicação.
+     * Realiza o cadastro à aplicação com conta Google.
      *
      * @param email: Informações do usuário que deseja fazer cadastro na aplicação
      */
@@ -230,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     /**
-     * Realiza o login com conta comum à aplicação.
+     * Realiza o login à aplicaçao com conta comum.
      */
     public void login() {
             HashMap postData = new HashMap();

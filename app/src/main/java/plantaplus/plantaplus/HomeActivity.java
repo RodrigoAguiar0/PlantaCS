@@ -19,6 +19,8 @@ import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity{
 
+    final String user = getIntent().getStringExtra("user");
+
     /**
      * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
      * backend (parte lógica) da aplicação.
@@ -44,6 +46,7 @@ public class HomeActivity extends AppCompatActivity{
         bPlantasPessoais.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent it = new Intent(HomeActivity.this, PessoaisActivity.class);
+                it.putExtra("user", user);
                 startActivity(it);
             }
         });
