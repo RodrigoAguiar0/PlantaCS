@@ -1,6 +1,6 @@
 package plantaplus.plantaplus;
 
-<<<<<<< HEAD
+
 /**
  * HomeActivity.java
  * Versão: 0.8
@@ -11,10 +11,7 @@ package plantaplus.plantaplus;
  * diversos tipos de plantas.
  * */
 
-=======
 import android.content.Intent;
-import android.media.Image;
->>>>>>> refs/remotes/origin/informacaoDetalhada
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
