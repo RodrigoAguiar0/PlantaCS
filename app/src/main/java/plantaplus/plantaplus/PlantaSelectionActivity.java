@@ -1,5 +1,6 @@
 package plantaplus.plantaplus;
 
+<<<<<<< HEAD
 /**
  * HomeActivity.java
  * Versão: 0.8
@@ -10,8 +11,13 @@ package plantaplus.plantaplus;
  * diversos tipos de plantas.
  * */
 
+=======
+import android.content.Intent;
+import android.media.Image;
+>>>>>>> refs/remotes/origin/informacaoDetalhada
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class PlantaSelectionActivity extends AppCompatActivity {
 
@@ -34,5 +40,11 @@ public class PlantaSelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planta_selection);
+    }
+
+    public void trocaTela (View v) {
+        Intent it = new Intent(PlantaSelectionActivity.this, InformacaoDetalhadaActivity.class);
+        it.putExtra("Planta", v.getTag().toString());
+        startActivity(it);
     }
 }
