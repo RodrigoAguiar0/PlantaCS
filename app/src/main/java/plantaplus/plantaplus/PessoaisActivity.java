@@ -12,6 +12,7 @@ package plantaplus.plantaplus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.kosalgeek.asynctask.AsyncResponse;
@@ -23,11 +24,16 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import plantaplus.plantaplus.model.Planta;
+import plantaplus.plantaplus.model.PlantaAdapter;
+
 public class PessoaisActivity extends AppCompatActivity implements AsyncResponse{
 
     final String user = getIntent().getExtras().getString("user");
     JSONObject jsonObject;
     JSONArray jsonArray;
+    PlantaAdapter plantaAdapter;
+    ListView listView;
 
     /**
      * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
@@ -50,6 +56,10 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoais);
 
+        listView = (ListView) findViewById(R.id.listView);
+        plantaAdapter = new PlantaAdapter(this, R.layout.row_layout);
+        listView.setAdapter(plantaAdapter);
+
         listaJardimPessoal();
     }
 
@@ -61,13 +71,17 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
             jsonArray = jsonObject.getJSONArray("server_response");
 
             // dados das plantas
-            String plantData;
+            String plantaNomePop, plantaNomeCient;
 
             for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject JO = jsonArray.getJSONObject(i);
 
                 // repetir para cada dado das plantas
-                plantData = JO.getString("tag");
+                plantaNomePop = JO.getString("nomePopular");
+                plantaNomeCient = JO.getString("nomeCientifico");
+
+                Planta planta = new Planta(plantaNomePop, plantaNomeCient);
+                plantaAdapter.add(planta);
             }
         } catch (JSONException e) {
             e.printStackTrace();
