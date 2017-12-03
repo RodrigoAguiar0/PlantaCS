@@ -31,6 +31,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile files('GenAsync.jar')
     compile 'com.google.android.gms:play-services-auth:9.8.0'
+    compile 'com.google.firebase:firebase-messaging:9.8.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:padding="8dp" >
+
+    <ImageView
+        android:id="@+id/imagemPlanta"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:src="@drawable/limao"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/imagemPlanta"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textoNomePopular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imagemPlanta"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="Altos limão"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/textoNomeCientifico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textoNomePopular"
+            android:layout_toRightOf="@+id/imagemPlanta"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Altos limonis"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+</RelativeLayout>

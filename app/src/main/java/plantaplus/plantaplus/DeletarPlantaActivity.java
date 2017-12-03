@@ -1,7 +1,7 @@
 package plantaplus.plantaplus;
 
 /**
- * HomeActivity.java
+ * DeletarPlantaActivity.java
  * Versão: 0.8
  * Data de criação: 08/10/2017
  *
@@ -16,17 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-
-public class HomeActivity extends AppCompatActivity{
-
-    final String user = getIntent().getStringExtra("user");
+public class DeletarPlantaActivity extends AppCompatActivity{
 
     /**
      * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
-     * backend (parte lógica) da aplicação.
+     * backend (parte lógica) da aplicação, com a função de deletar uma planta pessoal.
      *
      * @author Rhenan Konrad
-     * @since 05/11/2017
+     * @since 30/11/2017
      * */
 
     /**
@@ -38,17 +35,24 @@ public class HomeActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_deletar_planta);
 
-        final Button bPlantasPessoais = (Button) findViewById(R.id.bPlantasPessoais);
-        final Button bBancoPlantas = (Button) findViewById(R.id.bBancoPlantas);
+        final Button bConfirmar = (Button) findViewById(R.id.bConfirmar);
+        final Button bVoltar = (Button) findViewById(R.id.bVoltar);
 
-        bPlantasPessoais.setOnClickListener(new View.OnClickListener() {
+        bConfirmar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent it = new Intent(HomeActivity.this, PessoaisActivity.class);
-                it.putExtra("user", user);
+                //INSERIR AQUI CÓDICO PARA DELETAR PLANTA DO BANCO DE DADOS
+            }
+        });
+
+        bVoltar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent it = new Intent(DeletarPlantaActivity.this, InformacaoDetalhadaActivity.class);
                 startActivity(it);
             }
         });
+
     }
+
 }
