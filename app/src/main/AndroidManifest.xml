@@ -22,7 +22,9 @@
         <activity android:name=".FormularioCadastroActivity"></activity>
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".PessoaisActivity"></activity>
-        <activity android:name="InformacaoDetalhadaActivity"></activity>
+        <activity android:name=".InformacaoDetalhadaActivity"></activity>
+        <activity android:name=".BancoActivity"></activity>
+        <activity android:name=".DeletarPlantaActivity"></activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

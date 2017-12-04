@@ -1,7 +1,7 @@
 package plantaplus.plantaplus;
 
 /**
- * PessoaisActivity.java
+ * BancoActivity.java
  * Versão: 0.8
  * Data de criação: 08/10/2017
  *
@@ -14,58 +14,54 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-
 import plantaplus.plantaplus.model.Planta;
 import plantaplus.plantaplus.model.PlantaAdapter;
 
-public class PessoaisActivity extends AppCompatActivity implements AsyncResponse{
+
+public class BancoActivity extends AppCompatActivity implements AsyncResponse {
+
+    /**
+     * Essa classe é responsável por manipular a interação do usuário com a aplicação através da
+     * tela de banco de plantas
+     *
+     * @author Rafael Beffart Paludo
+     * @since 3/12/2017
+     * */
 
     private final String host = "192.168.43.76";
-    String user;
 
     JSONObject jsonObject;
     JSONArray jsonArray;
     PlantaAdapter plantaAdapter;
     ListView listView;
 
-    /**
-     * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
-     * backend (parte lógica) da aplicação. Ela também faz a comunicação com o banco de dados, para
-     * retornar informações pertinentes às plantas do usuário e suas informações.
-     *
-     * @author Rafael Beffart Paludo
-     * @since 12/10/2017
-     * */
+    String user;
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * do banco de plantas
      *
-     * @param savedInstanceState:
+     * @param savedInstanceState
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pessoais);
+        setContentView(R.layout.activity_banco);
 
         user = getIntent().getExtras().getString("user");
 
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.bancoListView);
         plantaAdapter = new PlantaAdapter(this, R.layout.row_layout);
         plantaAdapter.setUser(user);
         listView.setAdapter(plantaAdapter);
 
-        listaJardimPessoal();
+        listaJardimGlobal();
     }
 
     /**
@@ -101,18 +97,18 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
     }
 
     /**
-     * Lista o jardim pessoal do usuário que acessou o aplicativo
+     * Realiza busca no banco de dados por meio de script PHP para obter as plantas registradas no
+     * aplicativo
      */
-    public void listaJardimPessoal() {
+    public void listaJardimGlobal() {
         try {
             HashMap postData = new HashMap();
-            postData.put("txtUsername", user);
 
             PostResponseAsyncTask task = new PostResponseAsyncTask(
-                    PessoaisActivity.this, postData, PessoaisActivity.this);
+                    BancoActivity.this, postData, BancoActivity.this);
 
-            System.out.println("LISTA DE FLORES NO JARDIM");
-            task.execute("http://" + host + "/client/listOwnedPlants.php");
+            System.out.println("LISTA DE FLORES NO MUNDO");
+            task.execute("http://" + host + "/client/listPlants.php");
         } catch (Exception e) {
             System.out.println("ALOOOOOOOOOU: " + e.getMessage());
         }

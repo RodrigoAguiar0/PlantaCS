@@ -10,13 +10,15 @@ package plantaplus.plantaplus;
  * diversos tipos de plantas.
  * */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-public class DeletarPlantaActivity extends AppCompatActivity{
+import com.kosalgeek.asynctask.AsyncResponse;
+import com.kosalgeek.asynctask.PostResponseAsyncTask;
+
 
     /**
      * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
@@ -32,6 +34,27 @@ public class DeletarPlantaActivity extends AppCompatActivity{
      *
      * @param savedInstanceState:
      */
+
+import java.util.HashMap;
+
+public class DeletarPlantaActivity extends AppCompatActivity implements AsyncResponse{
+
+    /**
+     * Essa classe é responsável por manipular a interação do usuário com a aplicação através da
+     * tela de remoção de plantas do jardim pessoal
+     *
+     * @author Rhenan Konrad
+     * @since 29/11/2017
+     * */
+
+    private final String host = "192.168.43.76";
+
+    /**
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * da tela de remoção de planta do jardim pessoal
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,19 +63,44 @@ public class DeletarPlantaActivity extends AppCompatActivity{
         final Button bConfirmar = (Button) findViewById(R.id.bConfirmar);
         final Button bVoltar = (Button) findViewById(R.id.bVoltar);
 
+        final String user = getIntent().getExtras().getString("user");
+        final String planta = getIntent().getExtras().getString("planta");
+
         bConfirmar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //INSERIR AQUI CÓDICO PARA DELETAR PLANTA DO BANCO DE DADOS
+                try {
+                    HashMap postData = new HashMap();
+                    postData.put("txtUsername", user);
+                    postData.put("txtNomeCientifico", planta);
+
+                    PostResponseAsyncTask task = new PostResponseAsyncTask(
+                            DeletarPlantaActivity.this, postData, DeletarPlantaActivity.this);
+
+                    System.out.println("PASSEI PELA REMOCAO DE PLANTA");
+                    task.execute("http://" + host + "/client/removePlant.php");
+                } catch (Exception e) {
+                    System.out.println("ALOOOOOOOOOU: " + e.getMessage());
+                }
             }
         });
 
         bVoltar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent it = new Intent(DeletarPlantaActivity.this, InformacaoDetalhadaActivity.class);
-                startActivity(it);
+                finish();
             }
         });
 
     }
 
+    /**
+     * Saída de todas as funções de comunicação com o banco de dados chamadas e executadas nesta
+     * função.
+     *
+     * @param output: Resultado final da função, retornado pelo script PHP de comunicação com o
+     *              banco de dados
+     */
+    @Override
+    public void processFinish(String output) {
+        Toast.makeText(this, output, Toast.LENGTH_LONG).show();
+    }
 }

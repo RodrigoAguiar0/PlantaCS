@@ -34,7 +34,7 @@ public class FormularioCadastroActivity extends AppCompatActivity implements Asy
 
     private Usuario usuario = new Usuario();
     private UserController userControler = new UserController();
-
+    private final String host = "192.168.43.76";
     /**
      * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
      * backend (parte lógica) da aplicação. Ela também faz a comunicação com o banco de dados, após
@@ -45,12 +45,11 @@ public class FormularioCadastroActivity extends AppCompatActivity implements Asy
      * */
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * de cadastro de novos usuários
      *
      * @param savedInstanceState:
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +92,7 @@ public class FormularioCadastroActivity extends AppCompatActivity implements Asy
                         FormularioCadastroActivity.this, postData, FormularioCadastroActivity.this);
 
                 System.out.println("PASSEI PELO CADASTRO COMUM");
-                task.execute("http://192.168.15.4/client/register.php");
+                task.execute("http://" + host + "/client/register.php");
             } catch (Exception e) {
                 System.out.println("ALOOOOOOOOOU: " + e.getMessage());
             }

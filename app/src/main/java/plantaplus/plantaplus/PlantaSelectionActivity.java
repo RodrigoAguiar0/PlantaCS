@@ -1,14 +1,19 @@
 package plantaplus.plantaplus;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * HomeActivity.java
  * Versão: 0.8
  * Data de criação: 08/10/2017
- *
+ * <p>
  * Este sistema tem o propósito de oferecer assistência para seus usuários, oferecendo recomendações
  * de cuidaddos, como rega, poda, adubação, tratamento de pragas e doenças e exposição ao sol, para
  * diversos tipos de plantas.
+
  * */
 
 import android.content.Intent;
@@ -39,6 +44,12 @@ public class PlantaSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_planta_selection);
     }
 
+    /**
+     * Envia a execução do aplicativo para a tela de informações detalhadas da planta selecionada da
+     * lista de plantas
+     *
+     * @param v
+     */
     public void trocaTela (View v) {
         Intent it = new Intent(PlantaSelectionActivity.this, InformacaoDetalhadaActivity.class);
         it.putExtra("Planta", v.getTag().toString());

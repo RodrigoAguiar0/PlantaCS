@@ -54,12 +54,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private final int RC_SIGN_IN = 9001;
     private final String TAG = "MainActivity";
+    private final String host = "192.168.43.76";
 
     private GoogleApiClient mGoogleApiClient;
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * da tela inicial
      *
      * @param savedInstanceState:
      */
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData,
                     MainActivity.this);
             System.out.println("PASSEI PELO LOGIN com o email: " + email);
-            task.execute("http://192.168.15.4/client/loginGoogle.php");
+            task.execute("http://" + host + "/client/loginGoogle.php");
         } catch (Exception e) {
             System.out.println("ALOOOOOOOOOU: " + e.getMessage());
         }
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData,
                     MainActivity.this);
             System.out.println("PASSEI PELO CADASTRO");
-            task.execute("http://192.168.15.4/client/registerGoogle.php");
+            task.execute("http://" + host + "/client/registerGoogle.php");
         } catch (Exception e) {
             System.out.println("ALOOOOOOOOOU: " + e.getMessage());
         }
@@ -243,6 +244,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             PostResponseAsyncTask task = new PostResponseAsyncTask(MainActivity.this, postData,
                     MainActivity.this);
-            task.execute("http://192.168.6.48/client/login.php");
+            task.execute("http://" + host + "/client/login.php");
     }
 }
