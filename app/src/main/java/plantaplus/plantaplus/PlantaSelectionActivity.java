@@ -38,6 +38,12 @@ public class PlantaSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_planta_selection);
     }
 
+    /**
+     * Envia a execução do aplicativo para a tela de informações detalhadas da planta selecionada da
+     * lista de plantas
+     *
+     * @param v
+     */
     public void trocaTela (View v) {
         Intent it = new Intent(PlantaSelectionActivity.this, InformacaoDetalhadaActivity.class);
         it.putExtra("Planta", v.getTag().toString());
