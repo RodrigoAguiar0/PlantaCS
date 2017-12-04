@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="95dp"
-    android:padding="8dp" >
+    android:padding="8dp"
+    android:clickable="true"
+    android:id="@+id/linhaPlanta">
 
     <ImageView
         android:id="@+id/imagemPlanta"

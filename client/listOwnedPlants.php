@@ -17,7 +17,7 @@ if (isset ($_POST['txtUsername'])){
 	$response = array();
 	
 	while($row = mysqli_fetch_array($result)) {
-		array_push($response, array("name"=>$row[0], "email"=>$row[1], "mobile"=>$row[2]));
+		array_push($response, array("nomeCientifico"=>$row[0], "nomePopular"=>$row[1]));
 		// pares nome-valor, formados por "tag"=>valor
 	}
 	
