@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import plantaplus.plantaplus.MainActivity;
+import plantaplus.plantaplus.InformacaoDetalhadaActivity;
 import plantaplus.plantaplus.R;
 
 /**
@@ -24,8 +24,10 @@ import plantaplus.plantaplus.R;
 public class PlantaAdapter extends ArrayAdapter{
 
     List plantList = new ArrayList();
+    String user;
 
     public PlantaAdapter(@NonNull Context context, int resource) {
+
         super(context, resource);
     }
 
@@ -52,17 +54,18 @@ public class PlantaAdapter extends ArrayAdapter{
         row = convertView;
         final PlantHolder plantHolder;
 
-        if (row == null) {
+        //if (row == null) {
 
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             plantHolder = new PlantHolder();
             plantHolder.popularNameText = (TextView) row.findViewById(R.id.textoNomePopular);
             plantHolder.scientificNameText = (TextView) row.findViewById(R.id.textoNomeCientifico);
+            plantHolder.linha = (RelativeLayout) row.findViewById(R.id.linhaPlanta);
             row.setTag(plantHolder);
-        } else {
-            plantHolder = (PlantHolder) row.getTag();
-        }
+        //} else {
+        //    plantHolder = (PlantHolder) row.getTag();
+        //}
 
         Planta planta = (Planta) this.getItem(position);
         plantHolder.popularNameText.setText(planta.getNomePopular());
@@ -78,9 +81,14 @@ public class PlantaAdapter extends ArrayAdapter{
     }
 
     public void detalhesPlanta(String scientificName){
-        Intent it = new Intent(this.getContext(), /*trocar pela tela de detalhes da planta*/MainActivity.class);
+        Intent it = new Intent(this.getContext(), InformacaoDetalhadaActivity.class);
+        it.putExtra("user", user);
         it.putExtra("planta", scientificName);
         this.getContext().startActivity(it);
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     static class PlantHolder{

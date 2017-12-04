@@ -1,15 +1,5 @@
 package plantaplus.plantaplus;
 
-/**
- * PessoaisActivity.java
- * Versão: 0.8
- * Data de criação: 08/10/2017
- *
- * Este sistema tem o propósito de oferecer assistência para seus usuários, oferecendo recomendações
- * de cuidaddos, como rega, poda, adubação, tratamento de pragas e doenças e exposição ao sol, para
- * diversos tipos de plantas.
- * */
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -27,45 +17,34 @@ import java.util.HashMap;
 import plantaplus.plantaplus.model.Planta;
 import plantaplus.plantaplus.model.PlantaAdapter;
 
-public class PessoaisActivity extends AppCompatActivity implements AsyncResponse{
+/**
+ * Created by RafaelBP on 03/12/2017.
+ */
+
+public class BancoActivity extends AppCompatActivity implements AsyncResponse {
 
     private final String host = "192.168.43.76";
-    String user;
 
     JSONObject jsonObject;
     JSONArray jsonArray;
     PlantaAdapter plantaAdapter;
     ListView listView;
 
-    /**
-     * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
-     * backend (parte lógica) da aplicação. Ela também faz a comunicação com o banco de dados, para
-     * retornar informações pertinentes às plantas do usuário e suas informações.
-     *
-     * @author Rafael Beffart Paludo
-     * @since 12/10/2017
-     * */
+    String user;
 
-    /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
-     *
-     * @param savedInstanceState:
-     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pessoais);
+        setContentView(R.layout.activity_banco);
 
         user = getIntent().getExtras().getString("user");
 
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.bancoListView);
         plantaAdapter = new PlantaAdapter(this, R.layout.row_layout);
         plantaAdapter.setUser(user);
         listView.setAdapter(plantaAdapter);
 
-        listaJardimPessoal();
+        listaJardimGlobal();
     }
 
     @Override
@@ -93,16 +72,15 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
         }
     }
 
-    public void listaJardimPessoal() {
+    public void listaJardimGlobal() {
         try {
             HashMap postData = new HashMap();
-            postData.put("txtUsername", user);
 
             PostResponseAsyncTask task = new PostResponseAsyncTask(
-                    PessoaisActivity.this, postData, PessoaisActivity.this);
+                    BancoActivity.this, postData, BancoActivity.this);
 
-            System.out.println("LISTA DE FLORES NO JARDIM");
-            task.execute("http://" + host + "/client/listOwnedPlants.php");
+            System.out.println("LISTA DE FLORES NO MUNDO");
+            task.execute("http://" + host + "/client/listPlants.php");
         } catch (Exception e) {
             System.out.println("ALOOOOOOOOOU: " + e.getMessage());
         }
