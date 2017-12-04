@@ -3,7 +3,7 @@ package plantaplus.plantaplus;
 /**
  * InformacaoDetalhadaActivity.java
  * Versão: 0.8
- * Data de criação: 08/10/2017
+ * Data de criação: 30/11/2017
  *
  * Este sistema tem o propósito de oferecer assistência para seus usuários, oferecendo recomendações
  * de cuidaddos, como rega, poda, adubação, tratamento de pragas e doenças e exposição ao sol, para
@@ -28,6 +28,14 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+    /**
+     * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
+     * backend (parte lógica) da aplicação, com a função de apresentar informações detalhadas da
+     * planta.
+     *
+     * @author Rhenan Konrad
+     * @since 30/11/2017
+     * */
 public class InformacaoDetalhadaActivity extends AppCompatActivity implements AsyncResponse{
 
     /**

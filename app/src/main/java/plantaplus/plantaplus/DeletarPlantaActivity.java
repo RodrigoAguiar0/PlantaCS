@@ -19,6 +19,22 @@ import android.widget.Toast;
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
+
+    /**
+     * Esta classe é responsável por fazer a interface entre a interface gráfica da aplicação e o
+     * backend (parte lógica) da aplicação, com a função de deletar uma planta pessoal.
+     *
+     * @author Rhenan Konrad
+     * @since 30/11/2017
+     * */
+
+    /**
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
+     * qual a classe está relacionada
+     *
+     * @param savedInstanceState:
+     */
+
 import java.util.HashMap;
 
 public class DeletarPlantaActivity extends AppCompatActivity implements AsyncResponse{
