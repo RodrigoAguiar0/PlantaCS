@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * da tela inicial
      *
      * @param savedInstanceState:
      */

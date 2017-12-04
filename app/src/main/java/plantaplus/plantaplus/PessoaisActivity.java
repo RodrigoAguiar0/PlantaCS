@@ -68,6 +68,13 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
         listaJardimPessoal();
     }
 
+    /**
+     * Saída de todas as funções de comunicação com o banco de dados chamadas e executadas nesta
+     * função.
+     *
+     * @param output: Resultado final da função, retornado pelo script PHP de comunicação com o
+     *              banco de dados
+     */
     @Override
     public void processFinish(String output) {
         Toast.makeText(this, output, Toast.LENGTH_LONG).show();
@@ -93,6 +100,9 @@ public class PessoaisActivity extends AppCompatActivity implements AsyncResponse
         }
     }
 
+    /**
+     * Lista o jardim pessoal do usuário que acessou o aplicativo
+     */
     public void listaJardimPessoal() {
         try {
             HashMap postData = new HashMap();

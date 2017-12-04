@@ -39,8 +39,22 @@ import java.util.HashMap;
 
 public class DeletarPlantaActivity extends AppCompatActivity implements AsyncResponse{
 
+    /**
+     * Essa classe é responsável por manipular a interação do usuário com a aplicação através da
+     * tela de remoção de plantas do jardim pessoal
+     *
+     * @author Rhenan Konrad
+     * @since 29/11/2017
+     * */
+
     private final String host = "192.168.43.76";
 
+    /**
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * da tela de remoção de planta do jardim pessoal
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +92,13 @@ public class DeletarPlantaActivity extends AppCompatActivity implements AsyncRes
 
     }
 
+    /**
+     * Saída de todas as funções de comunicação com o banco de dados chamadas e executadas nesta
+     * função.
+     *
+     * @param output: Resultado final da função, retornado pelo script PHP de comunicação com o
+     *              banco de dados
+     */
     @Override
     public void processFinish(String output) {
         Toast.makeText(this, output, Toast.LENGTH_LONG).show();

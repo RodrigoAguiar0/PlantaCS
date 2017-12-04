@@ -45,12 +45,11 @@ public class FormularioCadastroActivity extends AppCompatActivity implements Asy
      * */
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * de cadastro de novos usuários
      *
      * @param savedInstanceState:
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -38,6 +38,14 @@ import java.util.HashMap;
      * */
 public class InformacaoDetalhadaActivity extends AppCompatActivity implements AsyncResponse{
 
+    /**
+     * Essa classe é responsável por manipular a interação do usuário com a aplicação através da
+     * tela de informações detalhadas da planta selecionada na lista de plantas
+     *
+     * @author Rhenan Konrad
+     * @since 29/11/2017
+     * */
+
     private final String host = "192.168.43.76";
     private String user, planta;
     private Button bDeleteAdd;
@@ -46,10 +54,10 @@ public class InformacaoDetalhadaActivity extends AppCompatActivity implements As
     private ImageView imagePlanta;
 
     /**
-     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica à
-     * qual a classe está relacionada
+     * Contém os comandos e funções que devem ser executados na inicialização da interface gráfica
+     * da tela de informações detalhadas da planta selecionada na lista de plantas
      *
-     * @param savedInstanceState:
+     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,10 @@ public class InformacaoDetalhadaActivity extends AppCompatActivity implements As
         inicializaCampos();
     }
 
+    /**
+     * Inicializa os campos da tela de informações detalhadas da planta selecionada na lista de
+     * plantas
+     */
     public void inicializaCampos() {
         try {
             HashMap postData = new HashMap();
@@ -94,6 +106,13 @@ public class InformacaoDetalhadaActivity extends AppCompatActivity implements As
         }
     }
 
+    /**
+     * Saída de todas as funções de comunicação com o banco de dados chamadas e executadas nesta
+     * função.
+     *
+     * @param output: Resultado final da função, retornado pelo script PHP de comunicação com o
+     *              banco de dados
+     */
     @Override
     public void processFinish(String output) {
         if (output.equals("own - true")) {
