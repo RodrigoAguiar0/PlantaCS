@@ -13,7 +13,13 @@ import android.view.View;
  * Este sistema tem o propósito de oferecer assistência para seus usuários, oferecendo recomendações
  * de cuidaddos, como rega, poda, adubação, tratamento de pragas e doenças e exposição ao sol, para
  * diversos tipos de plantas.
- */
+
+ * */
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
 
 public class PlantaSelectionActivity extends AppCompatActivity {
 
